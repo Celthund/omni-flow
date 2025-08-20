@@ -16,8 +16,8 @@ import java.util.concurrent.TimeUnit
 
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
-@Warmup(iterations = 5, timeUnit = TimeUnit.MILLISECONDS)
-@Measurement(iterations = 100, timeUnit = TimeUnit.MILLISECONDS)
+@Warmup(iterations = 2, timeUnit = TimeUnit.MILLISECONDS)
+@Measurement(iterations = 3, timeUnit = TimeUnit.MILLISECONDS)
 @Fork(1)
 @State(Scope.Benchmark)
 abstract class BenchmarkWorkflowRenderer {
