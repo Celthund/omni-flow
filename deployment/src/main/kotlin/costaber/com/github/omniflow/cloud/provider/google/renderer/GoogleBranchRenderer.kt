@@ -9,7 +9,7 @@ class GoogleBranchRenderer(private val branchContext: BranchContext) : GoogleRen
 
     override val element: Node = branchContext
 
-    override fun internalBeginRender(renderingContext: IndentedRenderingContext): String =
+    override fun internalBeginRender(renderingContext: IndentedRenderingContext): StringBuilder =
         render(renderingContext) {
             addLine("- ${branchContext.name}:")
             incIndentationLevel()
@@ -18,7 +18,7 @@ class GoogleBranchRenderer(private val branchContext: BranchContext) : GoogleRen
         }
 
     override fun internalEndRender(renderingContext: IndentedRenderingContext) =
-        render(renderingContext) {
+        render(renderingContext, appendNewLine = false) {
             decIndentationLevel()
             decIndentationLevel()
         }

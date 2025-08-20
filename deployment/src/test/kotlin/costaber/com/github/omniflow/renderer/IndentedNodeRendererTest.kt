@@ -28,7 +28,7 @@ internal class IndentedNodeRendererTest {
 
         val actualResult = indentedNodeRenderer.beginRender(indentedRenderingContext)
 
-        expectThat(actualResult).isEqualTo(RENDER_RESULT)
+        expectThat(actualResult.toString()).isEqualTo(RENDER_RESULT)
 
         verifyOrder {
             caller()
@@ -52,7 +52,7 @@ internal class IndentedNodeRendererTest {
 
         val actualResult = indentedNodeRenderer.endRender(indentedRenderingContext)
 
-        expectThat(actualResult).isEqualTo(RENDER_RESULT)
+        expectThat(actualResult.toString()).isEqualTo(RENDER_RESULT)
 
         verifyOrder {
             indentedRenderingContext.decIndentationLevel()
@@ -61,14 +61,14 @@ internal class IndentedNodeRendererTest {
     }
 
     class IndentedNodeRendererForTest(val caller: () -> Unit) : IndentedNodeRenderer() {
-        override fun internalBeginRender(renderingContext: IndentedRenderingContext): String {
+        override fun internalBeginRender(renderingContext: IndentedRenderingContext): StringBuilder {
             caller()
-            return RENDER_RESULT
+            return StringBuilder(RENDER_RESULT)
         }
 
-        override fun internalEndRender(renderingContext: IndentedRenderingContext): String {
+        override fun internalEndRender(renderingContext: IndentedRenderingContext): StringBuilder {
             caller()
-            return RENDER_RESULT
+            return StringBuilder(RENDER_RESULT)
         }
 
         override val element: Node = object : Node {

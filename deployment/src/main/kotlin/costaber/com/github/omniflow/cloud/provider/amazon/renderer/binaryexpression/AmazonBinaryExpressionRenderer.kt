@@ -20,7 +20,7 @@ abstract class AmazonBinaryExpressionRenderer (
 
     abstract val amazonVariablePath: String
 
-    override fun internalBeginRender(renderingContext: IndentedRenderingContext): String =
+    override fun internalBeginRender(renderingContext: IndentedRenderingContext): StringBuilder =
         render(renderingContext) {
             addLine(
                 "$AMAZON_VARIABLE\"\$.${
@@ -44,7 +44,7 @@ abstract class AmazonBinaryExpressionRenderer (
             }
         }
 
-    override fun internalEndRender(renderingContext: IndentedRenderingContext): String = "" // nothing
+    override fun internalEndRender(renderingContext: IndentedRenderingContext): StringBuilder = renderingContext.stringBuilder // nothing
 
     protected abstract fun IndentedRenderingContext.renderValue(value: Value<*>)
 }

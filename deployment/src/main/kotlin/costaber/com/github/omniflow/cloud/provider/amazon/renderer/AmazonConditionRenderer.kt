@@ -11,14 +11,14 @@ class AmazonConditionRenderer(private val condition: Condition) : AmazonRenderer
 
     override val element: Node = condition
 
-    override fun internalBeginRender(renderingContext: IndentedRenderingContext): String {
+    override fun internalBeginRender(renderingContext: IndentedRenderingContext): StringBuilder {
         val amazonContext = (renderingContext as AmazonRenderingContext).getLastRenderingContext()
         return render(amazonContext) {
             add("{")
         }
     }
 
-    override fun internalEndRender(renderingContext: IndentedRenderingContext): String {
+    override fun internalEndRender(renderingContext: IndentedRenderingContext): StringBuilder {
         val amazonContext = (renderingContext as AmazonRenderingContext).getLastRenderingContext()
         return render(amazonContext) {
             tab {

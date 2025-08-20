@@ -10,6 +10,7 @@ import costaber.com.github.omniflow.model.HttpMethod.GET
 import costaber.com.github.omniflow.resource.util.joinToStringNewLines
 import costaber.com.github.omniflow.traversor.DepthFirstNodeVisitorTraversor
 import costaber.com.github.omniflow.visitor.NodeContextVisitor
+import java.lang.StringBuilder
 import java.util.*
 import kotlin.test.Test
 
@@ -209,8 +210,8 @@ internal class WorkflowParallelTest {
         val contextVisitor = NodeContextVisitor(GoogleDefaultStrategyDeciderProvider.createNodeRendererStrategyDecider())
         val renderingContext = GoogleRenderingContext(termContext = GoogleTermContext())
         val content = nodeTraversor.traverse(contextVisitor, generalWorkflow, renderingContext)
-            .filterNot(String::isEmpty)
-            .joinToStringNewLines()
+            .get(0)
+            .toString()
         println(content)
     }
 
@@ -219,8 +220,8 @@ internal class WorkflowParallelTest {
         val nodeTraversor = DepthFirstNodeVisitorTraversor()
         val contextVisitor = NodeContextVisitor(AmazonDefaultStrategyDeciderProvider.createNodeRendererStrategyDecider())
         val content = nodeTraversor.traverse(contextVisitor, generalWorkflow, AmazonRenderingContext())
-            .filterNot(String::isEmpty)
-            .joinToStringNewLines()
+            .get(0)
+            .toString()
         println(content)
     }
 }

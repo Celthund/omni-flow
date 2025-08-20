@@ -13,7 +13,7 @@ class AmazonChoiceRenderer(private val conditionalContext: ConditionalContext) :
 
     override val element: Node = conditionalContext
 
-    override fun internalBeginRender(renderingContext: IndentedRenderingContext): String {
+    override fun internalBeginRender(renderingContext: IndentedRenderingContext): StringBuilder {
         val amazonRenderingContext = (renderingContext as AmazonRenderingContext).getLastRenderingContext()
         amazonRenderingContext.setConditions(conditionalContext.conditions)
         return render(renderingContext) {
@@ -22,7 +22,7 @@ class AmazonChoiceRenderer(private val conditionalContext: ConditionalContext) :
         }
     }
 
-    override fun internalEndRender(renderingContext: IndentedRenderingContext): String {
+    override fun internalEndRender(renderingContext: IndentedRenderingContext): StringBuilder {
         val amazonContext = (renderingContext as AmazonRenderingContext).getLastRenderingContext()
         return render(amazonContext) {
             add(AMAZON_CLOSE_ARRAY_WITH_COMMA)

@@ -7,13 +7,13 @@ import costaber.com.github.omniflow.renderer.RenderingContext
 
 class NodeContextVisitor(
     private val nodeRendererStrategyDecider: NodeRendererStrategyDecider
-) : ContextVisitor<Node, RenderingContext, String> {
+) : ContextVisitor<Node, RenderingContext, StringBuilder> {
 
-    override fun beginVisit(element: Node, context: RenderingContext): String =
-        getRenderer(element).beginRender(context) as String
+    override fun beginVisit(element: Node, context: RenderingContext): StringBuilder =
+        getRenderer(element).beginRender(context) as StringBuilder
 
-    override fun endVisit(element: Node, context: RenderingContext): String =
-        getRenderer(element).endRender(context) as String
+    override fun endVisit(element: Node, context: RenderingContext): StringBuilder =
+        getRenderer(element).endRender(context) as StringBuilder
 
     /**
      * Get the correct renderer for the given node

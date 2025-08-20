@@ -12,7 +12,7 @@ class AmazonStateMachineRenderer(private val workflow: Workflow) : AmazonRendere
 
     override val element: Node = workflow
 
-    override fun internalBeginRender(renderingContext: IndentedRenderingContext): String {
+    override fun internalBeginRender(renderingContext: IndentedRenderingContext): StringBuilder {
         val context = renderingContext as AmazonRenderingContext
         context.setSteps(workflow.steps)
         return render(renderingContext) {
@@ -26,8 +26,8 @@ class AmazonStateMachineRenderer(private val workflow: Workflow) : AmazonRendere
         }
     }
 
-    override fun internalEndRender(renderingContext: IndentedRenderingContext): String =
-        render(renderingContext) {
+    override fun internalEndRender(renderingContext: IndentedRenderingContext): StringBuilder =
+        render(renderingContext, appendNewLine = false) {
             decIndentationLevel()
             tab {
                 addLine("}")

@@ -7,7 +7,6 @@ import costaber.com.github.omniflow.cloud.provider.amazon.traversor.AmazonTraver
 import costaber.com.github.omniflow.generator.WorkflowGenerator.saveAndGetPetFromStore
 import costaber.com.github.omniflow.provider.OfficialWorkflowSamplesProvider
 import costaber.com.github.omniflow.util.Constants
-import costaber.com.github.omniflow.util.ListUtils
 import costaber.com.github.omniflow.visitor.NodeContextVisitor
 import org.openjdk.jmh.annotations.Benchmark
 import org.openjdk.jmh.annotations.Setup
@@ -25,13 +24,11 @@ open class BenchmarkAmazonDeployment : BenchmarkWorkflowDeployment() {
         )
         val amazonRenderingContext = AmazonRenderingContext()
         val saveAndGetPetFromStoreWorkflow = saveAndGetPetFromStore()
-        generatedWorkflow = ListUtils.collectListString(
-            traversor.traverse(
-                amazonContextVisitor,
-                saveAndGetPetFromStoreWorkflow,
-                amazonRenderingContext
-            ).toMutableList()
-        )
+        generatedWorkflow = traversor.traverse(
+            amazonContextVisitor,
+            saveAndGetPetFromStoreWorkflow,
+            amazonRenderingContext
+        )[0].toString()
         exampleWorkflow = OfficialWorkflowSamplesProvider.amazon()
         amazonStateMachineService = AmazonStateMachineService()
     }

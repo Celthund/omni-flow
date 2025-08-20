@@ -12,7 +12,7 @@ class AmazonStateRenderer(private val step: Step) : AmazonRenderer() {
 
     override val element: Node = step
 
-    override fun internalBeginRender(renderingContext: IndentedRenderingContext): String =
+    override fun internalBeginRender(renderingContext: IndentedRenderingContext): StringBuilder =
         render(renderingContext) {
             addLine("\"${step.name}\": {")
             tab {
@@ -20,7 +20,7 @@ class AmazonStateRenderer(private val step: Step) : AmazonRenderer() {
             }
         }
 
-    override fun internalEndRender(renderingContext: IndentedRenderingContext): String {
+    override fun internalEndRender(renderingContext: IndentedRenderingContext): StringBuilder {
         val amazonContext = renderingContext as AmazonRenderingContext
         return render(renderingContext) {
             if (amazonContext.getNextStepNameAndAdvance() != null) {

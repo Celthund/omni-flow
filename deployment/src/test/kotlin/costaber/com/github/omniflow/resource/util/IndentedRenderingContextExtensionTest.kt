@@ -17,14 +17,14 @@ internal class IndentedRenderingContextExtensionTest {
         )
         val expectedResult = "Example 1!\nExample 2!\n"
 
-        val actualResult = render(indentedRenderingContext) {
+        val actualResult = render(indentedRenderingContext, appendNewLine = false) {
             add("Example 1")
             append("!")
             addEmptyLine()
             addLine("Example 2!")
         }
 
-        expectThat(actualResult).isEqualTo(expectedResult)
+        expectThat(actualResult.toString()).isEqualTo(expectedResult)
     }
 
     @Test
@@ -36,8 +36,25 @@ internal class IndentedRenderingContextExtensionTest {
         )
         val expectedResult = ""
 
-        val actualResult = render(indentedRenderingContext) {}
+        val actualResult = render(indentedRenderingContext, appendNewLine = false) {}
 
-        expectThat(actualResult).isEqualTo(expectedResult)
+        expectThat(actualResult.toString()).isEqualTo(expectedResult)
+    }
+
+    @Test
+    fun `render with appendNewLine has expected results`() {
+        val indentedRenderingContext = IndentedRenderingContext(
+            indentationLevel = 0,
+            stringBuilder = StringBuilder(),
+            termContext = object : TermContext {},
+        )
+        val expectedResult = "Example 1!\nExample 2!\n\n"
+        val actualResult = render(indentedRenderingContext, appendNewLine = true) {
+            add("Example 1")
+            append("!")
+            addEmptyLine()
+            addLine("Example 2!")
+        }
+        expectThat(actualResult.toString()).isEqualTo(expectedResult)
     }
 }

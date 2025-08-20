@@ -23,7 +23,7 @@ class AmazonCallRenderer(
         ResultType.HEADERS -> AMAZON_HEADERS_BODY
     }
 
-    override fun internalBeginRender(renderingContext: IndentedRenderingContext): String {
+    override fun internalBeginRender(renderingContext: IndentedRenderingContext): StringBuilder {
         val amazonContext = renderingContext as AmazonRenderingContext
         val host = amazonContext.hostResolve(callContext.host) ?: callContext.host
 
@@ -46,7 +46,7 @@ class AmazonCallRenderer(
         }
     }
 
-    override fun internalEndRender(renderingContext: IndentedRenderingContext): String {
+    override fun internalEndRender(renderingContext: IndentedRenderingContext): StringBuilder {
         val amazonContext = renderingContext as AmazonRenderingContext
         val nextStepName = amazonContext.getNextStepName()
         val currentStepName = amazonContext.getCurrentStepName()

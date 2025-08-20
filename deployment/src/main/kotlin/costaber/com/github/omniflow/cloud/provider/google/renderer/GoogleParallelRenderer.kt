@@ -12,10 +12,11 @@ class GoogleParallelRenderer(private val parallelContext: ParallelContext) : Ind
 
     override val element: Node = parallelContext
 
-    override fun internalBeginRender(renderingContext: IndentedRenderingContext): String {
+    override fun internalBeginRender(renderingContext: IndentedRenderingContext): StringBuilder {
         val currentContext = (renderingContext as GoogleRenderingContext).getLastRenderingContext()
         val innerContext = GoogleRenderingContext(
             indentationLevel = currentContext.getIndentationLevel() + 1,
+            stringBuilder = currentContext.stringBuilder,
             termContext = currentContext.termContext
         )
         currentContext.appendInnerRenderingContext(innerContext)
@@ -36,15 +37,17 @@ class GoogleParallelRenderer(private val parallelContext: ParallelContext) : Ind
         }
     }
 
-    override fun internalEndRender(renderingContext: IndentedRenderingContext): String {
+    override fun internalEndRender(renderingContext: IndentedRenderingContext): StringBuilder {
         val googleRenderingContext = (renderingContext as GoogleRenderingContext)
         val innerContext = googleRenderingContext.popLastRenderingContext()
         val currentContext = googleRenderingContext.getLastRenderingContext()
         val sharedVariables = currentContext.getVariables().map { it.variable.name }.toSet()
             .intersect(innerContext.getVariables().map { it.variable.name }.toSet())
-        return render(currentContext) {
+        return render(currentContext, appendNewLine = false) {
             if (sharedVariables.isNotEmpty()) {
-                tab { add("shared: [${sharedVariables.joinToString(",")}]") }
+                tab {
+                    add("shared: [${sharedVariables.joinToString(",")}]\n")
+                }
             }
             decIndentationLevel()
             innerContext.decIndentationLevel()

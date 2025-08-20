@@ -14,7 +14,7 @@ class GoogleNotEqualToExpressionRenderer(
 
     override val element: Node = notEqualToExpression
 
-    override fun internalBeginRender(renderingContext: IndentedRenderingContext): String {
+    override fun internalBeginRender(renderingContext: IndentedRenderingContext): StringBuilder {
         val key = googleTermResolver.resolveVariable(notEqualToExpression.left, Notation.DOT_NOTATION)
         val value = when (notEqualToExpression.right) {
             is Variable -> googleTermResolver.resolveVariable(notEqualToExpression.right, Notation.DOT_NOTATION)
@@ -25,5 +25,5 @@ class GoogleNotEqualToExpressionRenderer(
         }
     }
 
-    override fun internalEndRender(renderingContext: IndentedRenderingContext): String = "" // nothing
+    override fun internalEndRender(renderingContext: IndentedRenderingContext): StringBuilder = renderingContext.stringBuilder // nothing
 }

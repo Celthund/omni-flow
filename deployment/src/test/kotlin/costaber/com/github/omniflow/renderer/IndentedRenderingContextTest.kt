@@ -25,7 +25,7 @@ internal class IndentedRenderingContextTest {
         indentedRenderingContext.add("Line5!")
         indentedRenderingContext.decIndentationLevel()
 
-        val actualResult = indentedRenderingContext.getString()
+        val actualResult = indentedRenderingContext.stringBuilder.toString()
 
         expectThat(actualResult).isEqualTo(expectedResult)
     }

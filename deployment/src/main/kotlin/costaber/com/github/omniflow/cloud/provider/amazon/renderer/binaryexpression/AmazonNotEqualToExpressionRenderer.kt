@@ -25,7 +25,7 @@ class AmazonNotEqualToExpressionRenderer(
         }
     }
 
-    override fun internalBeginRender(renderingContext: IndentedRenderingContext): String =
+    override fun internalBeginRender(renderingContext: IndentedRenderingContext): StringBuilder =
         render(renderingContext) {
             addLine(AMAZON_NOT)
             tab {
@@ -33,7 +33,7 @@ class AmazonNotEqualToExpressionRenderer(
             }
         }
 
-    override fun internalEndRender(renderingContext: IndentedRenderingContext): String =
+    override fun internalEndRender(renderingContext: IndentedRenderingContext): StringBuilder =
         render(renderingContext) {
             super.internalEndRender(renderingContext)
             add(AMAZON_CLOSE_OBJECT_WITH_COMMA)

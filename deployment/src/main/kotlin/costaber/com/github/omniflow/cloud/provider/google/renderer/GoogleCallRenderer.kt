@@ -22,7 +22,7 @@ class GoogleCallRenderer(
         ResultType.HEADERS -> "headers"
     }
 
-    override fun internalBeginRender(renderingContext: IndentedRenderingContext): String =
+    override fun internalBeginRender(renderingContext: IndentedRenderingContext): StringBuilder =
         render(renderingContext) {
             val googleTermContext = termContext as GoogleTermContext
             val httpMethod = callContext.method.name.lowercase()
@@ -42,7 +42,7 @@ class GoogleCallRenderer(
             renderTimeout()
         }
 
-    override fun internalEndRender(renderingContext: IndentedRenderingContext): String =
+    override fun internalEndRender(renderingContext: IndentedRenderingContext): StringBuilder =
         render(renderingContext) {
             val googleTermContext = termContext as GoogleTermContext
             googleTermContext.addResultVariable(callContext.result)

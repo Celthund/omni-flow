@@ -11,7 +11,7 @@ class AmazonParallelRenderer(private val parallelBranchContext: ParallelBranchCo
 
     override val element: Node = parallelBranchContext
 
-    override fun internalBeginRender(renderingContext: IndentedRenderingContext): String {
+    override fun internalBeginRender(renderingContext: IndentedRenderingContext): StringBuilder {
         val amazonContext = renderingContext as AmazonRenderingContext
         val currentContext = amazonContext.getLastRenderingContext()
         val innerContext = AmazonRenderingContext(
@@ -29,7 +29,7 @@ class AmazonParallelRenderer(private val parallelBranchContext: ParallelBranchCo
     }
 
 
-    override fun internalEndRender(renderingContext: IndentedRenderingContext): String {
+    override fun internalEndRender(renderingContext: IndentedRenderingContext): StringBuilder {
         val amazonContext = renderingContext as AmazonRenderingContext
         val nextStepName = amazonContext.getNextStepName()
         amazonContext.popLastRenderingContext()

@@ -10,6 +10,7 @@ import costaber.com.github.omniflow.resource.util.joinToStringNewLines
 import costaber.com.github.omniflow.traversor.DepthFirstNodeVisitorTraversor
 import costaber.com.github.omniflow.visitor.NodeContextVisitor
 import mu.KotlinLogging
+import java.lang.StringBuilder
 
 class GoogleCloudDeployer internal constructor(
     private val nodeTraversor: DepthFirstNodeVisitorTraversor,
@@ -25,8 +26,8 @@ class GoogleCloudDeployer internal constructor(
         logger.info { "Starting to convert Workflow into a Workflow" }
         val renderingContext = GoogleRenderingContext(termContext = GoogleTermContext())
         val content = nodeTraversor.traverse(contextVisitor, workflow, renderingContext)
-            .filterNot(String::isEmpty)
-            .joinToStringNewLines()
+            .get(0)
+            .toString()
         googleWorkflowService.deploy(
             projectId = deployContext.projectId,
             zone = deployContext.zone,

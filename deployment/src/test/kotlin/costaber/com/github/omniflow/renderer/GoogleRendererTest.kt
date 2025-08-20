@@ -46,8 +46,8 @@ internal class GoogleRendererTest {
         )
 
         val content = nodeTraversor.traverse(contextVisitor, w, renderingContext)
-            .filterNot(String::isEmpty)
-            .joinToStringNewLines()
+            .get(0)
+            .toString()
 
         val expected = """
             main:
@@ -89,8 +89,8 @@ internal class GoogleRendererTest {
         )
 
         val content = nodeTraversor.traverse(contextVisitor, w, renderingContext)
-            .filterNot(String::isEmpty)
-            .joinToStringNewLines()
+            .get(0)
+            .toString()
         val expected = """
             main:
                 steps:
@@ -137,8 +137,8 @@ internal class GoogleRendererTest {
         )
 
         val content = nodeTraversor.traverse(contextVisitor, w, renderingContext)
-            .filterNot(String::isEmpty)
-            .joinToStringNewLines()
+            .get(0)
+            .toString()
         val expected = """
             main:
                 steps:
@@ -196,8 +196,8 @@ internal class GoogleRendererTest {
         )
 
         val content = nodeTraversor.traverse(contextVisitor, w, renderingContext)
-            .filterNot(String::isEmpty)
-            .joinToStringNewLines()
+            .get(0)
+            .toString()
         val expected = """
             main:
                 steps:
@@ -256,8 +256,8 @@ internal class GoogleRendererTest {
         )
 
         val content = nodeTraversor.traverse(contextVisitor, w, renderingContext)
-            .filterNot(String::isEmpty)
-            .joinToStringNewLines()
+            .get(0)
+            .toString()
         val expected = """
             main:
                 steps:
@@ -325,8 +325,8 @@ internal class GoogleRendererTest {
         )
 
         val content = nodeTraversor.traverse(contextVisitor, w, renderingContext)
-            .filterNot(String::isEmpty)
-            .joinToStringNewLines()
+            .get(0)
+            .toString()
         val expected = """
             main:
                 steps:
@@ -392,8 +392,8 @@ internal class GoogleRendererTest {
         )
 
         val content = nodeTraversor.traverse(contextVisitor, w, renderingContext)
-            .filterNot(String::isEmpty)
-            .joinToStringNewLines()
+            .get(0)
+            .toString()
         val expected = """
             main:
                 steps:

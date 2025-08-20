@@ -9,11 +9,11 @@ import costaber.com.github.omniflow.predicate.DefaultPredicate
 import costaber.com.github.omniflow.renderer.NodeRenderer
 import java.util.function.Predicate
 
-class GoogleGreaterThanOrEqualExpressionStrategyFactory : NodeRendererStrategyFactory<String> {
+class GoogleGreaterThanOrEqualExpressionStrategyFactory : NodeRendererStrategyFactory<StringBuilder> {
 
     override fun getMatcher(): Predicate<Node> =
         DefaultPredicate(GreaterThanOrEqualExpression::class)
 
-    override fun getRenderer(node: Node): NodeRenderer<String> =
+    override fun getRenderer(node: Node): NodeRenderer<StringBuilder> =
         GoogleGreaterThanOrEqualExpressionRenderer(node as GreaterThanOrEqualExpression<*>, GoogleTermResolver)
 }

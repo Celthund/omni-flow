@@ -13,7 +13,7 @@ class GoogleVariableResolver(
 
     override val element: Node = variableInitialization
 
-    override fun internalBeginRender(renderingContext: IndentedRenderingContext): String {
+    override fun internalBeginRender(renderingContext: IndentedRenderingContext): StringBuilder {
         val googleRenderingContext = renderingContext as GoogleRenderingContext
         googleRenderingContext.setVariables(listOf(variableInitialization))
         return render(renderingContext) {
@@ -27,5 +27,5 @@ class GoogleVariableResolver(
         }
     }
 
-    override fun internalEndRender(renderingContext: IndentedRenderingContext) = "" // nothing
+    override fun internalEndRender(renderingContext: IndentedRenderingContext) = renderingContext.stringBuilder // nothing
 }

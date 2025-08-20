@@ -14,7 +14,7 @@ class GoogleLessThanExpressionRenderer(
 
     override val element: Node = lessThanExpression
 
-    override fun internalBeginRender(renderingContext: IndentedRenderingContext): String {
+    override fun internalBeginRender(renderingContext: IndentedRenderingContext): StringBuilder {
         val key = googleTermResolver.resolveVariable(lessThanExpression.left, Notation.DOT_NOTATION)
         val value = when (lessThanExpression.right) {
             is Variable -> googleTermResolver.resolveVariable(lessThanExpression.right, Notation.DOT_NOTATION)
@@ -25,5 +25,5 @@ class GoogleLessThanExpressionRenderer(
         }
     }
 
-    override fun internalEndRender(renderingContext: IndentedRenderingContext): String = "" // nothing
+    override fun internalEndRender(renderingContext: IndentedRenderingContext): StringBuilder = renderingContext.stringBuilder // nothing
 }

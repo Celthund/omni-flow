@@ -7,6 +7,7 @@ import costaber.com.github.omniflow.renderer.RenderingContext
 import costaber.com.github.omniflow.util.DUMMY_RENDERING_CONTEXT
 import costaber.com.github.omniflow.util.STEP_1
 import io.mockk.*
+import io.mockk.InternalPlatformDsl.toStr
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
 import org.junit.Before
@@ -31,7 +32,7 @@ internal class NodeContextVisitorTest {
         val contextSlot = slot<RenderingContext>()
 
         val nodeRendererMock = mockk<NodeRenderer<*>>()
-        val expectedResult = "step {"
+        val expectedResult = StringBuilder("step {")
 
         every {
             nodeRendererStrategyDecider.decideRenderer(
@@ -51,7 +52,7 @@ internal class NodeContextVisitorTest {
         )
 
         expect {
-            that(actualResult).isEqualTo(expectedResult)
+            that(actualResult.toString()).isEqualTo(expectedResult.toString())
             that(nodeSlot.captured).isEqualTo(STEP_1)
             that(contextSlot.captured).isEqualTo(DUMMY_RENDERING_CONTEXT)
         }
@@ -72,7 +73,7 @@ internal class NodeContextVisitorTest {
         val contextSlot = slot<RenderingContext>()
 
         val nodeRendererMock = mockk<NodeRenderer<*>>()
-        val expectedResult = "}"
+        val expectedResult = StringBuilder("}")
 
         every {
             nodeRendererStrategyDecider.decideRenderer(
@@ -92,7 +93,7 @@ internal class NodeContextVisitorTest {
         )
 
         expect {
-            that(actualResult).isEqualTo(expectedResult)
+            that(actualResult.toString()).isEqualTo(expectedResult.toString())
             that(nodeSlot.captured).isEqualTo(STEP_1)
             that(contextSlot.captured).isEqualTo(DUMMY_RENDERING_CONTEXT)
         }
