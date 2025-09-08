@@ -6,7 +6,6 @@ import costaber.com.github.omniflow.cloud.provider.amazon.renderer.AmazonRenderi
 import costaber.com.github.omniflow.cloud.provider.amazon.traversor.AmazonTraversor
 import costaber.com.github.omniflow.dsl.*
 import costaber.com.github.omniflow.model.HttpMethod.GET
-import costaber.com.github.omniflow.resource.util.joinToStringNewLines
 import costaber.com.github.omniflow.traversor.VisitorObserver
 import costaber.com.github.omniflow.visitor.NodeContextVisitor
 import strikt.api.expectThat
@@ -45,8 +44,8 @@ internal class AmazonRendererTest {
         )
 
         val content = nodeTraversor.traverse(contextVisitor, w, renderingContext)
-            .filterNot(String::isEmpty)
-            .joinToStringNewLines()
+            .get(0)
+            .toString()
 
         val expected = """
             {
@@ -98,8 +97,8 @@ internal class AmazonRendererTest {
         )
 
         val content = nodeTraversor.traverse(contextVisitor, w, renderingContext)
-            .filterNot(String::isEmpty)
-            .joinToStringNewLines()
+            .get(0)
+            .toString()
         val expected = """
             {
                 "Comment": "Description",
@@ -164,8 +163,8 @@ internal class AmazonRendererTest {
         )
 
         val content = nodeTraversor.traverse(contextVisitor, w, renderingContext)
-            .filterNot(String::isEmpty)
-            .joinToStringNewLines()
+            .get(0)
+            .toString()
         val expected = """
             {
                 "Comment": "Description",
@@ -233,8 +232,8 @@ internal class AmazonRendererTest {
         )
 
         val content = nodeTraversor.traverse(contextVisitor, w, renderingContext)
-            .filterNot(String::isEmpty)
-            .joinToStringNewLines()
+            .get(0)
+            .toString()
         val expected = """
         {
             "Comment": "Description",
@@ -346,8 +345,8 @@ internal class AmazonRendererTest {
         )
 
         val content = nodeTraversor.traverse(contextVisitor, w, renderingContext)
-            .filterNot(String::isEmpty)
-            .joinToStringNewLines()
+            .get(0)
+            .toString()
         val expected = """
         {
             "Comment": "Description",
@@ -470,8 +469,8 @@ internal class AmazonRendererTest {
         )
 
         val content = nodeTraversor.traverse(contextVisitor, w, renderingContext)
-            .filterNot(String::isEmpty)
-            .joinToStringNewLines()
+            .get(0)
+            .toString()
         val expected = """
             {
                 "Comment": "Description",
@@ -559,8 +558,8 @@ internal class AmazonRendererTest {
         )
 
         val content = nodeTraversor.traverse(contextVisitor, w, renderingContext)
-            .filterNot(String::isEmpty)
-            .joinToStringNewLines()
+            .get(0)
+            .toString()
         val expected = """
         {
             "Comment": "Description",
@@ -654,8 +653,8 @@ internal class AmazonRendererTest {
         )
 
         val content = nodeTraversor.traverse(contextVisitor, w, renderingContext)
-            .filterNot(String::isEmpty)
-            .joinToStringNewLines()
+            .get(0)
+            .toString()
         val expected = """
         {
             "Comment": "Description",

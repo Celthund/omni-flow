@@ -13,7 +13,7 @@ class GoogleWorkflowRenderer(
 
     override val element: Node = workflow
 
-    override fun internalBeginRender(renderingContext: IndentedRenderingContext): String =
+    override fun internalBeginRender(renderingContext: IndentedRenderingContext): StringBuilder =
         render(renderingContext) {
             addLine("main:")
             incIndentationLevel()
@@ -21,8 +21,8 @@ class GoogleWorkflowRenderer(
             add("steps:")
         }
 
-    override fun internalEndRender(renderingContext: IndentedRenderingContext): String =
-        render(renderingContext) {
+    override fun internalEndRender(renderingContext: IndentedRenderingContext): StringBuilder =
+        render(renderingContext, appendNewLine = false) {
             tab {
                 addLine("- return_output:")
                 tab {

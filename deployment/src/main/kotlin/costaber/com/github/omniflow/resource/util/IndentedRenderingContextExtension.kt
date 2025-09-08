@@ -4,8 +4,13 @@ import costaber.com.github.omniflow.renderer.IndentedRenderingContext
 
 inline fun render(
     renderer: IndentedRenderingContext,
+    appendNewLine: Boolean = true,
     builderAction: IndentedRenderingContext.() -> Unit
-): String {
+): StringBuilder {
     renderer.builderAction()
-    return renderer.getString()
+    val stringBuilder = renderer.stringBuilder
+    if (appendNewLine) {
+        stringBuilder.appendLine()
+    }
+    return stringBuilder
 }

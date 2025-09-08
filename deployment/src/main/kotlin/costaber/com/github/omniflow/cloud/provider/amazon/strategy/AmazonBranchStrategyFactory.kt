@@ -8,11 +8,11 @@ import costaber.com.github.omniflow.predicate.DefaultPredicate
 import costaber.com.github.omniflow.renderer.NodeRenderer
 import java.util.function.Predicate
 
-class AmazonBranchStrategyFactory : NodeRendererStrategyFactory<String> {
+class AmazonBranchStrategyFactory : NodeRendererStrategyFactory<StringBuilder> {
 
     override fun getMatcher(): Predicate<Node> =
         DefaultPredicate(BranchContext::class)
 
-    override fun getRenderer(node: Node): NodeRenderer<String> =
+    override fun getRenderer(node: Node): NodeRenderer<StringBuilder> =
         AmazonBranchRenderer(node as BranchContext)
 }

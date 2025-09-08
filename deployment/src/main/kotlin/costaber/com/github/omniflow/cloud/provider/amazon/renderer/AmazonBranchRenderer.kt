@@ -11,7 +11,7 @@ class AmazonBranchRenderer(private val branchContext: BranchContext) : IndentedN
 
     override val element: Node = branchContext
 
-    override fun internalBeginRender(renderingContext: IndentedRenderingContext): String {
+    override fun internalBeginRender(renderingContext: IndentedRenderingContext): StringBuilder {
         val amazonContext = renderingContext as AmazonRenderingContext
         val currentContext = amazonContext.getLastRenderingContext()
         val innerContext = AmazonRenderingContext(
@@ -31,7 +31,7 @@ class AmazonBranchRenderer(private val branchContext: BranchContext) : IndentedN
         }
     }
 
-    override fun internalEndRender(renderingContext: IndentedRenderingContext): String {
+    override fun internalEndRender(renderingContext: IndentedRenderingContext): StringBuilder {
         val amazonContext = renderingContext as AmazonRenderingContext
         val innerContext = amazonContext.popLastRenderingContext()
         val context = amazonContext.getLastRenderingContext()

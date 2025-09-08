@@ -9,11 +9,11 @@ import costaber.com.github.omniflow.predicate.DefaultPredicate
 import costaber.com.github.omniflow.renderer.NodeRenderer
 import java.util.function.Predicate
 
-class GoogleWorkflowStrategyFactory : NodeRendererStrategyFactory<String> {
+class GoogleWorkflowStrategyFactory : NodeRendererStrategyFactory<StringBuilder> {
 
     override fun getMatcher(): Predicate<Node> =
         DefaultPredicate(Workflow::class)
 
-    override fun getRenderer(node: Node): NodeRenderer<String> =
+    override fun getRenderer(node: Node): NodeRenderer<StringBuilder> =
         GoogleWorkflowRenderer(node as Workflow, GoogleTermResolver)
 }

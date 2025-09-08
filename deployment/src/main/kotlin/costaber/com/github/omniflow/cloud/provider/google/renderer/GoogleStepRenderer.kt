@@ -9,7 +9,7 @@ class GoogleStepRenderer(private val step: Step) : GoogleRenderer() {
 
     override val element: Node = step
 
-    override fun internalBeginRender(renderingContext: IndentedRenderingContext): String =
+    override fun internalBeginRender(renderingContext: IndentedRenderingContext): StringBuilder =
         render(renderingContext) {
             if (step.next.isNotEmpty()) {
                 addLine("- ${step.name}:")
@@ -19,5 +19,5 @@ class GoogleStepRenderer(private val step: Step) : GoogleRenderer() {
             }
         }
 
-    override fun internalEndRender(renderingContext: IndentedRenderingContext) = "" // nothing
+    override fun internalEndRender(renderingContext: IndentedRenderingContext) = renderingContext.stringBuilder // nothing
 }

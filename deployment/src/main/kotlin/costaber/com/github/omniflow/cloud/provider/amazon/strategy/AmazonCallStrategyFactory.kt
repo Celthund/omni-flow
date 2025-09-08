@@ -9,11 +9,11 @@ import costaber.com.github.omniflow.predicate.DefaultPredicate
 import costaber.com.github.omniflow.renderer.NodeRenderer
 import java.util.function.Predicate
 
-class AmazonCallStrategyFactory : NodeRendererStrategyFactory<String> {
+class AmazonCallStrategyFactory : NodeRendererStrategyFactory<StringBuilder> {
 
     override fun getMatcher(): Predicate<Node> =
         DefaultPredicate(CallContext::class)
 
-    override fun getRenderer(node: Node): NodeRenderer<String> =
+    override fun getRenderer(node: Node): NodeRenderer<StringBuilder> =
         AmazonCallRenderer(node as CallContext, AmazonTermResolver)
 }

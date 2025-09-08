@@ -8,7 +8,6 @@ import costaber.com.github.omniflow.generator.WorkflowGenerator.textTranslator
 import costaber.com.github.omniflow.provider.OfficialWorkflowSamplesProvider
 import costaber.com.github.omniflow.traversor.DepthFirstNodeVisitorTraversor
 import costaber.com.github.omniflow.util.Constants
-import costaber.com.github.omniflow.util.ListUtils
 import costaber.com.github.omniflow.visitor.NodeContextVisitor
 import org.openjdk.jmh.annotations.Benchmark
 import org.openjdk.jmh.annotations.Setup
@@ -28,13 +27,11 @@ open class BenchmarkGoogleDeployment : BenchmarkWorkflowDeployment() {
             0, StringBuilder(), GoogleTermContext()
         )
         val workflow = textTranslator()
-        generatedWorkflow = ListUtils.collectListString(
-            traversor.traverse(
-                googleContextVisitor,
-                workflow,
-                googleRenderingContext
-            ).toMutableList()
-        )
+        generatedWorkflow = traversor.traverse(
+            googleContextVisitor,
+            workflow,
+            googleRenderingContext
+        )[0].toString()
         exampleWorkflow = OfficialWorkflowSamplesProvider.google()
         googleWorkflowService = GoogleWorkflowService()
     }

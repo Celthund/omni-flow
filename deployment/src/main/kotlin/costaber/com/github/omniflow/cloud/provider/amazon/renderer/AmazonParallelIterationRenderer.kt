@@ -14,7 +14,7 @@ class AmazonParallelIterationRenderer(private val parallelIterationContext: Para
 
     override val element: Node = parallelIterationContext
 
-    override fun internalBeginRender(renderingContext: IndentedRenderingContext): String {
+    override fun internalBeginRender(renderingContext: IndentedRenderingContext): StringBuilder {
         val amazonContext = renderingContext as AmazonRenderingContext
         val currentContext = amazonContext.getLastRenderingContext()
         val innerContext = AmazonRenderingContext(
@@ -51,7 +51,7 @@ class AmazonParallelIterationRenderer(private val parallelIterationContext: Para
     }
 
 
-    override fun internalEndRender(renderingContext: IndentedRenderingContext): String {
+    override fun internalEndRender(renderingContext: IndentedRenderingContext): StringBuilder {
         val amazonContext = renderingContext as AmazonRenderingContext
         val nextStepName = amazonContext.getNextStepName()
         val innerContext = amazonContext.popLastRenderingContext()

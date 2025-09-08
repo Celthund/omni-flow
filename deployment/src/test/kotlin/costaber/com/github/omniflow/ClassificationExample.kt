@@ -16,6 +16,7 @@ import costaber.com.github.omniflow.util.HEADER_CONTENT_TYPE
 import costaber.com.github.omniflow.visitor.NodeContextVisitor
 import strikt.api.expectThat
 import strikt.assertions.isEqualTo
+import java.lang.StringBuilder
 import kotlin.test.Test
 
 internal class ClassificationExample {
@@ -159,8 +160,8 @@ internal class ClassificationExample {
         val contextVisitor = NodeContextVisitor(GoogleDefaultStrategyDeciderProvider.createNodeRendererStrategyDecider())
         val renderingContext = GoogleRenderingContext(termContext = GoogleTermContext())
         val content = nodeTraversor.traverse(contextVisitor, workflow, renderingContext)
-            .filterNot(String::isEmpty)
-            .joinToStringNewLines()
+            .get(0)
+            .toString()
         val expected = $$"""
             main:
                 steps:
@@ -225,9 +226,7 @@ internal class ClassificationExample {
             "https://sentiment.soik.eu",
             "xnivwfynoh.execute-api.eu-north-1.amazonaws.com"
         )
-        val content = nodeTraversor.traverse(contextVisitor, workflow, renderingContext)
-            .filterNot(String::isEmpty)
-            .joinToStringNewLines()
+        val content = nodeTraversor.traverse(contextVisitor, workflow, renderingContext)[0].toString()
         val expected = """
             {
                 "Comment": "Classify sentiment for multiple texts in parallel",

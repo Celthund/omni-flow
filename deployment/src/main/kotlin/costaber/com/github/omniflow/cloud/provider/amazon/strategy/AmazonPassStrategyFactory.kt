@@ -8,11 +8,11 @@ import costaber.com.github.omniflow.predicate.DefaultPredicate
 import costaber.com.github.omniflow.renderer.NodeRenderer
 import java.util.function.Predicate
 
-class AmazonPassStrategyFactory : NodeRendererStrategyFactory<String> {
+class AmazonPassStrategyFactory : NodeRendererStrategyFactory<StringBuilder> {
 
     override fun getMatcher(): Predicate<Node> =
         DefaultPredicate(AssignContext::class)
 
-    override fun getRenderer(node: Node): NodeRenderer<String> =
+    override fun getRenderer(node: Node): NodeRenderer<StringBuilder> =
         AmazonPassRenderer(node as AssignContext)
 }

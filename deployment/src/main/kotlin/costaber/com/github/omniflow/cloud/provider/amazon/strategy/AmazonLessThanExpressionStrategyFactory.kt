@@ -9,11 +9,11 @@ import costaber.com.github.omniflow.predicate.DefaultPredicate
 import costaber.com.github.omniflow.renderer.NodeRenderer
 import java.util.function.Predicate
 
-class AmazonLessThanExpressionStrategyFactory : NodeRendererStrategyFactory<String> {
+class AmazonLessThanExpressionStrategyFactory : NodeRendererStrategyFactory<StringBuilder> {
 
     override fun getMatcher(): Predicate<Node> =
         DefaultPredicate(LessThanExpression::class)
 
-    override fun getRenderer(node: Node): NodeRenderer<String> =
+    override fun getRenderer(node: Node): NodeRenderer<StringBuilder> =
         AmazonLessThanExpressionRenderer(node as LessThanExpression<*>, AmazonTermResolver)
 }

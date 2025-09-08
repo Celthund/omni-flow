@@ -9,11 +9,11 @@ import costaber.com.github.omniflow.predicate.DefaultPredicate
 import costaber.com.github.omniflow.renderer.NodeRenderer
 import java.util.function.Predicate
 
-class AmazonLessThanOrEqualExpressionStrategyFactory : NodeRendererStrategyFactory<String> {
+class AmazonLessThanOrEqualExpressionStrategyFactory : NodeRendererStrategyFactory<StringBuilder> {
 
     override fun getMatcher(): Predicate<Node> =
         DefaultPredicate(LessThanOrEqualExpression::class)
 
-    override fun getRenderer(node: Node): NodeRenderer<String> =
+    override fun getRenderer(node: Node): NodeRenderer<StringBuilder> =
         AmazonLessThanOrEqualExpressionRenderer(node as LessThanOrEqualExpression<*>, AmazonTermResolver)
 }

@@ -9,16 +9,16 @@ class GoogleSwitchRenderer(private val conditionalContext: ConditionalContext) :
 
     override val element: Node = conditionalContext
 
-    override fun internalBeginRender(renderingContext: IndentedRenderingContext): String =
+    override fun internalBeginRender(renderingContext: IndentedRenderingContext): StringBuilder =
         render(renderingContext) {
             add("switch:")
         }
 
 
-    override fun internalEndRender(renderingContext: IndentedRenderingContext): String =
-        conditionalContext.default?.let {
-            render(renderingContext) {
+    override fun internalEndRender(renderingContext: IndentedRenderingContext): StringBuilder =
+        render(renderingContext) {
+            conditionalContext.default?.let {
                 add("next: $it")
             }
-        }.orEmpty()
+        }
 }

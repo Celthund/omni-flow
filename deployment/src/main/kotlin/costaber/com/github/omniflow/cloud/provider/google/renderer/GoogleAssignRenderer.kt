@@ -9,10 +9,10 @@ class GoogleAssignRenderer(assignContext: AssignContext) : GoogleRenderer() {
 
     override val element: Node = assignContext
 
-    override fun internalBeginRender(renderingContext: IndentedRenderingContext): String =
+    override fun internalBeginRender(renderingContext: IndentedRenderingContext): StringBuilder =
         render(renderingContext) {
             add("assign:")
         }
 
-    override fun internalEndRender(renderingContext: IndentedRenderingContext) = "" // nothing
+    override fun internalEndRender(renderingContext: IndentedRenderingContext) = renderingContext.stringBuilder // nothing
 }

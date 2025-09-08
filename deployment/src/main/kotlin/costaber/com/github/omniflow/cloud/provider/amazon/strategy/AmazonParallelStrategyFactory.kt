@@ -11,12 +11,12 @@ import costaber.com.github.omniflow.predicate.DefaultPredicate
 import costaber.com.github.omniflow.renderer.NodeRenderer
 import java.util.function.Predicate
 
-class AmazonParallelStrategyFactory : NodeRendererStrategyFactory<String> {
+class AmazonParallelStrategyFactory : NodeRendererStrategyFactory<StringBuilder> {
 
     override fun getMatcher(): Predicate<Node> =
         DefaultPredicate(ParallelContext::class)
 
-    override fun getRenderer(node: Node): NodeRenderer<String> = when (node) {
+    override fun getRenderer(node: Node): NodeRenderer<StringBuilder> = when (node) {
         is ParallelBranchContext -> AmazonParallelRenderer(node)
         is ParallelIterationContext -> AmazonParallelIterationRenderer(node)
         else -> throw UnsupportedOperationException("ParallelBranchContext $node is not supported.")

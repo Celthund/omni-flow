@@ -11,7 +11,7 @@ class GoogleIterationRenderer(private val iterationContext: IterationContext) : 
 
     override val element: Node = iterationContext
 
-    override fun internalBeginRender(renderingContext: IndentedRenderingContext): String =
+    override fun internalBeginRender(renderingContext: IndentedRenderingContext): StringBuilder =
         render(renderingContext) {
             addLine("for:")
             tab {
@@ -26,7 +26,7 @@ class GoogleIterationRenderer(private val iterationContext: IterationContext) : 
         }
 
     override fun internalEndRender(renderingContext: IndentedRenderingContext) =
-        render(renderingContext) {
+        render(renderingContext, appendNewLine = false) {
             decIndentationLevel()
         }
 }

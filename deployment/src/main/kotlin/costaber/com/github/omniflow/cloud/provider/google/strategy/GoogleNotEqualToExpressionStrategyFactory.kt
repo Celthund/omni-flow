@@ -9,11 +9,11 @@ import costaber.com.github.omniflow.predicate.DefaultPredicate
 import costaber.com.github.omniflow.renderer.NodeRenderer
 import java.util.function.Predicate
 
-class GoogleNotEqualToExpressionStrategyFactory : NodeRendererStrategyFactory<String> {
+class GoogleNotEqualToExpressionStrategyFactory : NodeRendererStrategyFactory<StringBuilder> {
 
     override fun getMatcher(): Predicate<Node> =
         DefaultPredicate(NotEqualToExpression::class)
 
-    override fun getRenderer(node: Node): NodeRenderer<String> =
+    override fun getRenderer(node: Node): NodeRenderer<StringBuilder> =
         GoogleNotEqualToExpressionRenderer(node as NotEqualToExpression<*>, GoogleTermResolver)
 }

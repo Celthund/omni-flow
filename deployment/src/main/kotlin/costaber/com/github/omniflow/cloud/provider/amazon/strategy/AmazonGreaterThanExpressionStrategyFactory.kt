@@ -9,11 +9,11 @@ import costaber.com.github.omniflow.predicate.DefaultPredicate
 import costaber.com.github.omniflow.renderer.NodeRenderer
 import java.util.function.Predicate
 
-class AmazonGreaterThanExpressionStrategyFactory : NodeRendererStrategyFactory<String> {
+class AmazonGreaterThanExpressionStrategyFactory : NodeRendererStrategyFactory<StringBuilder> {
 
     override fun getMatcher(): Predicate<Node> =
         DefaultPredicate(GreaterThanExpression::class)
 
-    override fun getRenderer(node: Node): NodeRenderer<String> =
+    override fun getRenderer(node: Node): NodeRenderer<StringBuilder> =
         AmazonGreaterThanExpressionRenderer(node as GreaterThanExpression<*>, AmazonTermResolver)
 }

@@ -15,7 +15,7 @@ class AmazonVariablesResolver(
 
     override val element: Node = variableInitialization
 
-    override fun internalBeginRender(renderingContext: IndentedRenderingContext): String {
+    override fun internalBeginRender(renderingContext: IndentedRenderingContext): StringBuilder {
         val amazonContext = renderingContext as AmazonRenderingContext
         return render(renderingContext) {
             val term = when (variableInitialization.term) {
@@ -30,5 +30,5 @@ class AmazonVariablesResolver(
         }
     }
 
-    override fun internalEndRender(renderingContext: IndentedRenderingContext): String = "" // nothing
+    override fun internalEndRender(renderingContext: IndentedRenderingContext): StringBuilder = renderingContext.stringBuilder // nothing
 }

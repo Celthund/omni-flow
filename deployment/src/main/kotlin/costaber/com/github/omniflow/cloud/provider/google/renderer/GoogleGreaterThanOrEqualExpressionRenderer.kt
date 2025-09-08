@@ -14,7 +14,7 @@ class GoogleGreaterThanOrEqualExpressionRenderer(
 
     override val element: Node = greaterThanOrEqualExpression
 
-    override fun internalBeginRender(renderingContext: IndentedRenderingContext): String {
+    override fun internalBeginRender(renderingContext: IndentedRenderingContext): StringBuilder {
         val key = googleTermResolver.resolveVariable(greaterThanOrEqualExpression.left, Notation.DOT_NOTATION)
         val value = when (greaterThanOrEqualExpression.right) {
             is Variable -> googleTermResolver.resolveVariable(greaterThanOrEqualExpression.right, Notation.DOT_NOTATION)
@@ -25,5 +25,5 @@ class GoogleGreaterThanOrEqualExpressionRenderer(
         }
     }
 
-    override fun internalEndRender(renderingContext: IndentedRenderingContext): String = "" // nothing
+    override fun internalEndRender(renderingContext: IndentedRenderingContext): StringBuilder = renderingContext.stringBuilder // nothing
 }
